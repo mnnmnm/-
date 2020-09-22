@@ -1,0 +1,3 @@
+https://www.footmark.info/linux/centos/centos7-vnc-install-setup/
+照著該網站做 在vi 修改裡面的東西中 把type的forked改寫成simple
+為求方便 添增使用者jacky (useradd jacky) 以此來圖個方便不用改內文
