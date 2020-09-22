@@ -1,1 +1,2 @@
-# server-build-note
+
+伺服器架設筆記
