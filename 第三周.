@@ -1,0 +1,17 @@
+架設 VPN伺服器
+參考資料:
+https://www.footmark.info/linux/centos/centos7-vnc-install-setup/
+照著該網站做 在vi 修改裡面的東西中 把type的forked改寫成simple
+為求方便 添增使用者jacky (useradd jacky) 以此來圖個方便不用改內文
+
+--------------
+
+linux查詢硬碟空間指令 ::  df -h
+
+如遇伺服器出現異常 如何探查
+step 1   systemctl ststus sshd     ((檢查是否運行中
+step 2   getenforce    看結果是否為 disabled
+如果不是 使用vi 修改 /etc/selinux/config
+其中 selinux款項中 修改為 disabled
+step 3 把防火牆關掉  目的為不讓防火牆影響通訊可能 架設完成後可以再自行開啟
+       systemctl stop firewalld
