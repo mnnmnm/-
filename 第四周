@@ -21,4 +21,12 @@ systemctl start pptpd
 systemctl start sshd
 systemctl start httpd
 
-        
+特別注意 這邊要測試的話需要兩個不同的機器
+單一機台使用虛擬機會有網路死循環 測試不了
+
+------------------------------------------------
+如何移除軟體
+rpm -e E代表erase
+有點問題的是 使用rpm移除可能會有相依性的問題
+當有其他套件正在使用時 會不給移除
+yum remove 依樣移除 這個不會有相依性的問題
