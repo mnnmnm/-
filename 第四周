@@ -1,0 +1,24 @@
+https://exfast.me/2016/05/centos-install-7-x-vpn-pptp/
+安裝VPN PPTPD
+
+yum install epel-release -y // yum install ppp pptpd -y
+3.5.7.設定備份
+第四步  vi /etc/pptpd.conf 在最下面新增IP
+        localip 10.0.10.1
+        remoteip 10.0.10.2-254
+第六步  vi /etc/ppp/option.pptpd 在裡面設定預設dns server (內文已經有 僅須把#去掉)
+        ms-dns 8.8.8.8
+        ms-dns 1.1.1.1
+第八步 可有可無 為設定網路位址協定
+第九步 
+第十步
+第十一步 vi /etc/ppp/chap-secrets  設定VPN連線的帳號密碼與通訊方式
+username pptpd passwd *
+使用者名稱 VPN類型 使用者密碼 *
+
+最後啟動pptpd，sshd與httpd來確認連線正常成功
+systemctl start pptpd 
+systemctl start sshd
+systemctl start httpd
+
+        
