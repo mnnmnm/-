@@ -35,3 +35,11 @@ yum remove 依樣移除 這個不會有相依性的問題
 確認伺服器有沒有正常工作
 systemctl status ****
 netstat -tulnp 查詢對應port是否開啟  ex: netstat -tulnp | grep pptpd
+
+------------------------------------------------
+如果PORT號不是你想要的 該怎麼修改 該如何設置防火牆
+這邊以ssh為示範 (ssh預設port為22)
+cd /etc/ssh
+vi sshd_config  進入後找到port=22 修改為自己需要的port號 這邊以2222為例
+然後在防火牆設置開啟通道
+firewall-cmd --zone=public --add-port=2222/tcp /*這邊tcp記得打上
