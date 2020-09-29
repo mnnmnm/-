@@ -42,4 +42,11 @@ netstat -tulnp 查詢對應port是否開啟  ex: netstat -tulnp | grep pptpd
 cd /etc/ssh
 vi sshd_config  進入後找到port=22 修改為自己需要的port號 這邊以2222為例
 然後在防火牆設置開啟通道
-firewall-cmd --zone=public --add-port=2222/tcp /*這邊tcp記得打上
+firewall-cmd --zone=public --add-port=2222/tcp /*這邊tcp是協定記得打上 
+
+如果不想對外跟對內port號相同 如何設置
+firewall-cmd --zone=public --add-forward-port=port=1234:proto=tcp:toport=2222
+
+-------------------------------------------------
+壓縮與解壓縮
+gzip && gunzip
