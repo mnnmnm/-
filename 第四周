@@ -30,3 +30,8 @@ rpm -e E代表erase
 有點問題的是 使用rpm移除可能會有相依性的問題
 當有其他套件正在使用時 會不給移除
 yum remove 依樣移除 這個不會有相依性的問題
+
+------------------------------------------------
+確認伺服器有沒有正常工作
+systemctl status ****
+netstat -tulnp 查詢對應port是否開啟  ex: netstat -tulnp | grep pptpd
