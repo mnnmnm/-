@@ -5,3 +5,34 @@ nfs 使用samba讓linux跟windows可以共享
 製造資料夾時 使用指令 -p  ex: mkdir -p /data  -p的意義在於 不會有報錯 如果資料夾存在的話
 查看資料夾權限 ls -l -d /filename
 添加配置時 想讓所有人存取 可以用*號 
+
+客戶端掛載資料 前後資料夾為 :服務端 客戶端
+mount -t nfs 192.168.56.101:/data /mydata
+使用 mount 可以查看是否掛載成功 最新的在最下面
+
+*** 特別注意 mount時不能再該目錄底下製作 必續得在其他目錄下(ex: 根目錄/ ROOT)
+結束掛載指令 umonut
+
+----------------------------------------------------------
+
+壓縮後的副檔名 為.gz
+zip -r 可以選擇解壓縮後的檔名
+
+打包指令
+tar -cvf filename.tar file*
+-cvf create verbose(把過程顯示出來) file
+
+解包指令
+tar -xvf filename.tar
+
+看看裡面有什麼
+tar -tvf filename.tar
+
+****最常使用的****
+使用tar並且壓縮
+tar -cvzf filename.tgz file*
+
+/*在linux裡面 基本上副檔名沒有意義 屬性才重要*/
+
+記得常常備份 尤其是/etc /home /var(email跟網頁)    ...var=可變動的
+
