@@ -2,3 +2,15 @@ https://blog.alantsai.net/posts/2018/04/devtooltips-5-ngrok-allow-public-to-acce
 NGROK技術
 
 使用需得在ngrok官網做註冊登入
+註冊後下載 解壓縮後 在網站上找到密鑰並輸入進指令中
+./ngrok authtoken 1jSRKbGfJ4CD7co1YozwLQSznbj_5Uq7wrkBXKF5y2bxf7r6t
+然後再輸入你要共享的功能的port號 (這邊以httpd為例)
+如需查找自身port號 可使用 netstat -tunlp |grep httpd  查找結果為 80
+後輸入 ./ngrok http 80
+進入後即會知道自己的token
+須注意 離開該頁面(ctrl+c)該服務就不存在了
+
+如果需要加一層隱私
+可以加設一層密碼 方法如下(auth)
+./ngrok http --auth=admin:12345 80
+設置 http 帳號admin密碼12345 port號80
