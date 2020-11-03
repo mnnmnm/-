@@ -15,7 +15,6 @@ smbpasswd -a user
 輸入裝有samba的IP --> \\192.168.56.101   輸入帳號密碼
 即可連線成功
 
----------------------------------------------
 如果想要分享新的資料夾 (以TMP做示範)
 可以進入smn.conf做修改
 vi /etc/samba/smn.conf
@@ -30,3 +29,14 @@ vi /etc/samba/smn.conf
 儲存後 記得重開系統
 systemctl restart smb & systemctl restart nmb
 即可在共享中看到新增出來的tmp資料夾
+
+-----------------------------------------------------------
+crontab 要記得    https://blog.gtwang.org/linux/linux-crontab-cron-job-tutorial-and-examples/
+
+好用的指令工具::
+-du 用來評估目錄下空間使用情況
+常用參數
+-s (summary) :只顯示總用量 不細細顯示子目錄
+-h : 把總大小用單位化簡 39924 --> 39M
+--max-depth=N  看第N曾目錄下的使用情形 (不能與-s一同使用)
+範例 #du /home/user -h --max-depth=1 
