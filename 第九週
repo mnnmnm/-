@@ -1,0 +1,32 @@
+https://josephjsf2.github.io/linux/2019/11/01/share_centos_folder_with_windows.html
+
+samba是可以讓linux與windows之間做網路芳鄰的工具
+首先 yum install samba -y
+開啟後 需開啟兩樣程式 分別為smb和nmb
+systemctl start smb , systemctl start nmb
+確認正確開啟後
+為samba服務創造帳號密碼
+!! 在創造samba帳號時 原系統內必須也有該帳號 (以user為例)
+smbpasswd -a user
+輸入密碼: user
+確認密碼: user
+
+這時已經完成了設置 接著到想要連接的系統做連接(windows)
+輸入裝有samba的IP --> \\192.168.56.101   輸入帳號密碼
+即可連線成功
+
+---------------------------------------------
+如果想要分享新的資料夾 (以TMP做示範)
+可以進入smn.conf做修改
+vi /etc/samba/smn.conf
+
+在下面新增基本權限
+[tmp]
+        comment = Temporary file space              
+        path = /tmp                        \\路徑
+        read only = No                     \\權限
+        public = Yes                       \\開放
+        browseable = Yes                   
+儲存後 記得重開系統
+systemctl restart smb & systemctl restart nmb
+即可在共享中看到新增出來的tmp資料夾
