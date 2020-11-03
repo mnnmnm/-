@@ -34,9 +34,39 @@ systemctl restart smb & systemctl restart nmb
 crontab 要記得    https://blog.gtwang.org/linux/linux-crontab-cron-job-tutorial-and-examples/
 
 好用的指令工具::
+
 -du 用來評估目錄下空間使用情況
 常用參數
 -s (summary) :只顯示總用量 不細細顯示子目錄
 -h : 把總大小用單位化簡 39924 --> 39M
 --max-depth=N  看第N曾目錄下的使用情形 (不能與-s一同使用)
 範例 #du /home/user -h --max-depth=1 
+
+-df 掛載的磁碟分割區資訊
+常用參數 
+-h : 把總大小用單位化簡 39924 --> 39M
+
+-dd 讀取檔案並輸出
+現用來產生特定大小的內容作測試
+範例 # dd if=/dev/zero of =file3m bs=1M count=3
+
+-wc 統計檔案內行數字數
+常用參數
+-l 只顯示行數 
+-c 只顯示字數
+-w 只顯示英文字節數
+
+-tr 取代或刪除
+範例 echo "ABCD" | tr [:upper:] [:lower:] 這邊的意思為 把字串裡所有大寫改為小寫
+常用集:
+-d 刪除
+[:digit:] 數字                  echo "adfj0$12n@2-d92" | tr -d [:digit:]  --> adfj$n@-d
+[:alpha:] 所有文字              echo "adfj0$12n@2-d92" | tr -d "[:alpha:]"  --> 0$12@2-92
+[:alnum:] 大小寫與數字的集合     echo "adfj0$12n@2-d92" | tr -d "[:alnum:]"  --> $@-
+[:punct:] 特殊符號              echo "adfj0$12n@2-d92" | tr -d "[:punct:]"  --> adfj012n2d92
+例題 : 把字串中除了數字以外通通拔掉  a9ej@jsdg092Q(*@wrs24
+echo "a9ej@jsdg092Q(*@wrs24" | tr -d "[:alpha:]" | tr -d "[:punct:]"  --> 909224
+
+-scp 跨主機複製檔案
+範例 :
+scp {a..d} user@192.168.56.101:/home/user   把a b c d這些資料送到192.168.56.101的/home/user之下
