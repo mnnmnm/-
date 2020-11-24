@@ -1,0 +1,5 @@
+-split 檔案分成同等分大小
+split -b 1m file3m
+如何合併
+cat xaa xab xac > file123
+ls -lh file123
