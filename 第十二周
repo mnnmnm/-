@@ -3,3 +3,57 @@ split -b 1m file3m
 如何合併
 cat xaa xab xac > file123
 ls -lh file123
+
+
+進階使用 分割後打包  
+https://blog.gtwang.org/linux/split-large-tar-into-multiple-files-of-certain-size/
+
+ex. 拿etc打包
+tar zcvf etc.tar.gz /etc    ---> 純打包並壓縮   v顯示打包過程 f指定檔名
+tar zcvf - /etc | split -b 5m - "etc.par"    --->把前面資料夾打包並壓縮後照檔名分割      " - "的意思標準輸出 會丟到後面的當作標準輸入
+合併 car etc.para* >etc.tar.gz
+
+
+-traceroute  -ping 追蹤路由過程
+
+ping -c1 -W1 ip        c1是送一個封包 W1是過時1秒 
+ping -c1 -W1 ip 2>&1 >/dev/null 把2(標準輸出)跟&1(標準錯誤輸出)視作同類
+
+-hostname 
+更改主機名稱
+hostnamectl set-hostname centos7 (如需直接生效 輸入bash或重新進入su即可)
+
+
+-mail 直接mail訊息
+echo "hello world" | mail -s "hello there" stone848@gmail.com
+
+延伸使用 使用腳本測試IP並mail結果給自己
+先vi一個test.sh裡面打上這些
+
+=========================================
+
+#!/usr/bin/bash
+
+for ip in 192.168.60.{1..10}
+do
+   ping -c 1 -W 1 $ip 2>&1 >/dev/null
+   if [[ $? -eq 0 ]]
+   then
+      echo "$ip ping ok"
+      echo "$ip">>test.txt
+   else
+      echo "$ip ping fails"
+   fi
+done
+
+cat test.txt | mail -s "ip list" stne848@gmail.com
+rm test.txt
+
+==========================================
+再來給這個程序可執行的能力
+chmod +x test.sh
+結束
+--------------------------------------------------------------------
+
+
+alias 別名
