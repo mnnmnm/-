@@ -1,0 +1,37 @@
+DHCP server 教學
+
+step1:
+確定網路連接沒問題 方法如下 這樣遇到問題可以確定不是連線的問題
+A機台設置NAT與內部網路////B機台只設置內部網路
+使用ifconfig確認內部介面卡名稱 (enp0s9之類的)
+設置IP  
+ip addr add 192.168.1.1/24 brd + dev enp0s9        brd為廣播協議 +為把機台設置為一參數 若-則為零參數 /// dev (name)則是指定操作網路的名稱
+ip addr add 192.168.1.2/24 brd + dev enp0s9
+並且互ping確認可以連通
+
+如何清除介面卡設定  # ifconfig 介面卡名稱 0
+step2:
+yum install dhcp
+vi /etc/dhcp/dhcpd.conf 
+裡面編輯如下::
+ddns-update-style            interim;
+ignore client-updates;
+default-lease-time           259200;
+max-lease-time               518400;
+
+subnet 192.168.100.0 netmask 255.255.255.0 {
+    range 192.168.100.101 192.168.100.200;
+    option routers               192.168.100.254;
+    option domain-name-servers   8.8.8.8, 8.8.4.4;
+}
+修改儲存後按照文黨裡面的預設routers設置IP(192.168.100.254)
+# ip addr add 192.168.100.254/24 brd + dev enp0s9
+設置完成後重啟dhcpd   注意:若IP不同則無法正確啟動DHCPD
+systemctl restart dhcpd
+檢查是否正常啟動 
+systemctl status dhcpd
+若皆正常則去第二台機台設置
+使用自動查找IP的指令
+dhclient enp0s9
+完成後即完成
+ping 192.168.100.254 成功ping到及為成功
