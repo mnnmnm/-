@@ -4,3 +4,14 @@ Order deny,allow  (順序不能錯)(先拒絕，在同意。才能覆蓋成功)
 Allow from (ip)
 Deny from all
 </Directory>
+
+若需要使用密碼登入的方式:
+在資料夾創建
+
+
+-------------------------------------------------
+virtual host  在同一組IP跟PORT號下有不同的HOST
+https://www.opencli.com/linux/rhel-centos-setup-apache-virtual-hosts
+-------------------------------------------------
+手動配置network
+https://blog.gtwang.org/linux/centos-linux-static-network-configuration-tutorial/
