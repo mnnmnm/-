@@ -1,0 +1,6 @@
+存取控制
+<Directory (/docs)>
+Order deny,allow  (順序不能錯)(先拒絕，在同意。才能覆蓋成功)
+Allow from (ip)
+Deny from all
+</Directory>
