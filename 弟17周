@@ -1,0 +1,38 @@
+mysql架構與mariadb
+https://blog.gtwang.org/linux/centos-7-install-mariadb-mysql-server-tutorial/
+與httpd + php結合
+在 /var/www/html 下 vi 一個 php 內容如下
+
+  <?php
+  $server = "localhost";         # MySQL/MariaDB 伺服器
+  $dbuser = "root";       # 使用者帳號
+  $dbpassword = "1234"; # 使用者密碼
+  $dbname = "testdb";    # 資料庫名稱
+
+  # 連接 MySQL/MariaDB 資料庫
+  $connection = new mysqli($server, $dbuser, $dbpassword, $dbname);
+
+  # 檢查連線是否成功
+  if ($connection->connect_error) {
+    die("連線失敗：" . $connection->connect_error);
+  }
+
+
+  $sqlQuery ="SELECT * from Persons;";
+
+  if ($result = $connection->query($sqlQuery)) {
+    # 取得結果
+    while ($row = $result->fetch_row()) {
+      printf ("%s：%d\n", $row[0], $row[1]);
+    }
+
+    # 釋放資源
+    $result->close();
+  } else {
+    echo "執行失敗：" . $connection->error;
+  }
+
+  $connection->close();
+  ?>
+
+然後把上面伺服器帳號密碼等資料修改好即可
