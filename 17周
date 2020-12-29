@@ -36,3 +36,8 @@ https://blog.gtwang.org/linux/centos-7-install-mariadb-mysql-server-tutorial/
   ?>
 
 然後把上面伺服器帳號密碼等資料修改好即可
+
+-----------------
+網路卡更改
+ifconfig 比較舊 新的是用 ip
+networkmanager.service 與 network.service一個開一個就要關
